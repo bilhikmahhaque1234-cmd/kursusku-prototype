@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+/* ==========================================================================
+   KursusKu UIN — Stylesheet
+   Tidak perlu mengubah HTML selain menambah <link> di <head>.
+   ========================================================================== */
+
+:root {
+  --ink: #10231f;
+  --muted: #4b6560;
+  --green-900: #0b3b36;
+  --green-700: #12594f;
+  --green-100: #e3efeb;
+  --bg: #f5f8f7;
+  --surface: #ffffff;
+  --line: #d5e2de;
+  --gold: #f2b233;
+  --gold-strong: #e0a021;
+
+  --font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --maxw: 1120px;
+  --gutter: max(1.25rem, calc((100% - var(--maxw)) / 2));
+  --radius: 14px;
+}
+
+/* ---------- Reset ringan ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {

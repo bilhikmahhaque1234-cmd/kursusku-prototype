@@ -63,9 +63,9 @@ $courses = [
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= htmlspecialchars($siteName) ?></title>
-  <link rel="stylesheet" href="style.css">
+  
 </head>
-
+<link rel="stylesheet" href="assets/css/style.css">
 <body> 
   <header>
     <nav aria-label="Navigasi utama">
