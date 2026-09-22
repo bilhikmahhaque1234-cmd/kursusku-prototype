@@ -15,7 +15,7 @@ KursusKu Prototype adalah project website sederhana untuk praktikum PHP dan HTML
 
 ## Menjalankan Project
 
-1. Simpan project di folder `C:\laragon\www\kursusku-prototype`
+1. Simpan project di folder `D:\laragon\www\kursusku-prototype`
 2. Jalankan Laragon.
 3. Klik **Start All**.
 4. Buka project melalui browser.
