@@ -63,9 +63,9 @@ $courses = [
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= htmlspecialchars($siteName) ?></title>
-  
+  <link rel="stylesheet" href="style.css">
 </head>
-<link rel="stylesheet" href="assets/css/style.css">
+
 <body> 
   <header>
     <nav aria-label="Navigasi utama">
@@ -85,17 +85,17 @@ $courses = [
     </section>
 
     <section id="keunggulan">
-      <h2>Mengapa Memilih KursusKu?</h2>
+      <h2>Mengapa ingin belajar olahraga basket?</h2>
       <article>
         <h3>Materi Terarah</h3>
-        <p>Materi disusun bertahap dari dasar hingga praktik.</p>
+        <p>Materi yang diberikan sesuai dengan arahan.</p>
       </article>
       <article>
-        <h3>Belajar dengan Proyek</h3>
-        <p>Setiap tahap menghasilkan hasil nyata.</p>
+        <h3>Belajar teknik pada bola basket</h3>
+        <p>mempelajari teknik-teknik yang terdapat pada olahraga.</p>
       </article>
       <article>
-        <h3>Pendampingan Praktik</h3>
+        <h3>Pendampingan belajar</h3>
         <p>Siswa belajar melalui demonstrasi, latihan, dan evaluasi.</p>
       </article>
     </section> 
@@ -147,7 +147,7 @@ $courses = [
 
     <section id="media">
       <h2>Kenali Program Kami</h2> 
-      <img src="assets/images/olahraga.jpg" alt="Siswa sedang mengikuti kegiatan kursus komputer" width="640">
+      <img src="assets/images/olahraga.jpg" alt="Siswa sedang mengikuti kegiatan olahraga" width="640">
       <h3>Video Singkat</h3> 
       <video controls width="640">
         <source src="assets/video/intro-kursus.mp4" type="video/mp4"> Browser Anda tidak mendukung video HTML5.
