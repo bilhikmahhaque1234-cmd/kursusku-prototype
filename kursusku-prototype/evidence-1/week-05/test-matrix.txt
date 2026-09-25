@@ -1,0 +1,26 @@
+TEST MATRIX - PERTEMUAN 5
+Proyek: Kursusku Prototype
+Nama Mahasiswa: Bil hikmah haque
+Tanggal Pengujian: 25 September 2026
+
+Isi kolom "Status" dengan Lulus / Perlu Perbaikan, dan "Catatan" dengan satu kalimat hasil pengamatan.
+
+No. | Test        | Langkah                                    | Hasil yang Diharapkan                   | Status | Catatan
+1   | Load form   | Buka registration.php                       | Form tampil tanpa error                 | Lulus  | Halaman berhasil dimuat dengan struktur HTML dan CSS yang rapi.
+2   | Required    | Kirim form kosong                           | Browser menahan field wajib             | Lulus  | Browser menahan submit pada input nama, email, hp, dan pilihan kursus.
+3   | Email       | Isi email "abc"                             | Browser meminta format email            | Lulus  | Browser menampilkan peringatan format email tidak valid.
+4   | Nama pendek | Isi nama dua karakter                       | minlength mencegah submit               | Lulus  | Atribut minlength=3 berhasil menahan submit nama yang terlalu pendek.
+5   | GET         | Ubah method ke GET lalu submit data latihan | Parameter terlihat di URL               | Lulus  | Parameter form tampil sebagai query string pada address bar browser.
+6   | POST        | Kembalikan ke POST dan submit               | Query data tidak tampil pada URL        | Lulus  | Data dikirim via body request dan tidak terlihat di URL.
+7   | Radio       | Pilih Mahasiswa/Umum                        | Nilai muncul di ringkasan               | Lulus  | Status jenis peserta berhasil dibaca dan ditampilkan di ringkasan.
+8   | Checkbox    | Pilih dua minat                             | Dua nilai muncul setelah digabung       | Lulus  | Array minat berhasil digabung menggunakan fungsi implode().
+9   | Textarea    | Isi catatan singkat                         | Isi ditampilkan kembali dengan aman     | Lulus  | Catatan berhasil ditampilkan kembali dan di-escape dengan aman.
+10  | Hidden      | Submit form                                 | Sumber "week-05" diterima               | Lulus  | Hidden field source berhasil terbaca di server.
+11  | Mobile      | Uji sekitar 360 px                          | Form satu kolom, tidak overflow         | Lulus  | Layout form menyesuaikan menjadi 1 kolom tanpa horizontal scroll.
+12  | Navigasi    | Beranda -> Katalog -> Daftar                | Semua link menuju tujuan benar          | Lulus  | Alur navigasi header dan tombol berfungsi dengan baik.
+
+Ringkasan:
+- Jumlah Lulus: 12
+- Jumlah Perlu Perbaikan: 0
+- Catatan umum: Seluruh fitur form, validasi HTML, pengiriman POST, dan CSS responsif telah berfungsi dengan baik.
+-
