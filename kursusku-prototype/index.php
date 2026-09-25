@@ -63,7 +63,14 @@ $courses = [
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= htmlspecialchars($siteName) ?></title>
-  <link rel="stylesheet" href="style.css">
+  
+  <!-- Font Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- File CSS Utama -->
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body> 
@@ -72,6 +79,7 @@ $courses = [
       <a href="index.php"><strong><?= htmlspecialchars($siteName) ?></strong></a> 
       <a href="#keunggulan">Keunggulan</a> 
       <a href="#katalog">Katalog</a> 
+      <a href="registration.php">Daftar Kursus</a> 
       <a href="#alur">Cara Daftar</a> 
       <a href="#kontak">Kontak</a>
     </nav>
@@ -81,7 +89,10 @@ $courses = [
     <section id="hero">
       <h1><?= htmlspecialchars($tagline) ?></h1>
       <p>Temukan kursus teknologi yang relevan untuk meningkatkan keterampilan Anda.</p> 
-      <a href="#katalog">Lihat Katalog Kursus</a>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+        <a href="#katalog">Lihat Katalog Kursus</a>
+        <a href="registration.php" style="background: var(--accent-orange); color: var(--bg-dark);">Daftar Sekarang</a>
+      </div>
     </section>
 
     <section id="keunggulan">
@@ -92,7 +103,7 @@ $courses = [
       </article>
       <article>
         <h3>Belajar teknik pada bola basket</h3>
-        <p>mempelajari teknik-teknik yang terdapat pada olahraga.</p>
+        <p>Mempelajari teknik-teknik yang terdapat pada olahraga.</p>
       </article>
       <article>
         <h3>Pendampingan belajar</h3>
@@ -138,11 +149,14 @@ $courses = [
     <section id="alur">
       <h2>Cara Mendaftar</h2>
       <ol>
-        <li>Pilih kursus yang diminati.</li>
-        <li>Isi form pendaftaran dengan benar.</li>
-        <li>Periksa kembali data.</li>
-        <li>Kirim pendaftaran dan tunggu konfirmasi admin.</li>
+        <li>Pilih kursus yang diminati dari katalog.</li>
+        <li>Klik menu <strong>Daftar Kursus</strong> atau tombol pendaftaran.</li>
+        <li>Isi form pendaftaran dengan data latihan.</li>
+        <li>Kirim pendaftaran dan periksa ringkasan data.</li>
       </ol>
+      <div style="margin-top: 1.5rem;">
+        <a href="registration.php" class="btn-primary">Buka Form Pendaftaran</a>
+      </div>
     </section>
 
     <section id="media">

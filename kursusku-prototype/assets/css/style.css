@@ -1,33 +1,614 @@
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
-
 /* ==========================================================================
-   KursusKu UIN — Stylesheet
-   Tidak perlu mengubah HTML selain menambah <link> di <head>.
+   ROBOT & MECHA CYBERNETIC THEME (style.css)
    ========================================================================== */
 
+/* --- VARIABEL WARNA --- */
 :root {
-  --ink: #10231f;
-  --muted: #4b6560;
-  --green-900: #0b3b36;
-  --green-700: #12594f;
-  --green-100: #e3efeb;
-  --bg: #f5f8f7;
-  --surface: #ffffff;
-  --line: #d5e2de;
-  --gold: #f2b233;
-  --gold-strong: #e0a021;
-
-  --font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --maxw: 1120px;
-  --gutter: max(1.25rem, calc((100% - var(--maxw)) / 2));
-  --radius: 14px;
+  --bg-dark: #0a0d12;          /* Background utama (Gelap Mecha) */
+  --bg-panel: #121820;         /* Kotak section */
+  --bg-card: #18202a;          /* Kartu/isi */
+  --bg-hover: #222d3b;         /* Hover state */
+  
+  --accent-neon: #00f0ff;      /* Cyan Neon */
+  --accent-glow: rgba(0, 240, 255, 0.4);
+  --accent-orange: #ff9900;    /* Kuning/Oranye Robot */
+  --accent-green: #00ff88;     /* Status berhasil */
+  --accent-red: #ff2a5f;       /* Status penuh/bahaya */
+  
+  --text-main: #e6edf3;
+  --text-muted: #8b949e;
+  --text-bright: #ffffff;
+  
+  --border-tech: 1px solid rgba(0, 240, 255, 0.25);
+  
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-mono: monospace;
+  
+  /* Potongan sudut ala robot */
+  --clip-btn: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
 }
 
-/* ---------- Reset ringan ---------- */
-*,
-*::before,
-*::after {
+/* --- Scrollbar Custom Cyberpunk --- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-card);
+  border: 1px solid var(--accent-neon);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-neon);
+}
+
+/* --- Base Reset & Grid Background --- */
+*, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+body {
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.1) 0%, transparent 60%),
+    linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 30px 30px, 30px 30px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Typography --- */
+h1, h2, h3 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--text-bright);
+  text-shadow: 0 0 15px var(--accent-glow);
+}
+
+h2 {
+  font-size: 1.6rem;
+  color: var(--accent-neon);
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+h2::before {
+  content: '// ';
+  color: var(--accent-orange);
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-neon), transparent);
+  margin-top: 6px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  color: var(--accent-neon);
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: var(--text-muted);
+}
+
+a {
+  color: var(--accent-neon);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--text-bright);
+  text-shadow: 0 0 8px var(--accent-neon);
+}
+
+/* --- Layout --- */
+header, main, footer {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- Navbar --- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 13, 18, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: var(--border-tech);
+  padding: 1rem 0;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+nav a {
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: var(--text-main);
+  padding: 0.4rem 0.8rem;
+  border: 1px solid transparent;
+}
+
+nav a strong {
+  color: var(--accent-neon);
+  font-size: 1.1rem;
+}
+
+nav a:hover:not(:first-child) {
+  color: var(--accent-neon);
+  border-color: var(--accent-neon);
+  background: rgba(0, 240, 255, 0.08);
+  clip-path: var(--clip-btn);
+}
+
+/* --- Section Container --- */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+}
+
+section {
+  background: var(--bg-panel);
+  border: var(--border-tech);
+  padding: 2.5rem;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+section::before, section::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+}
+
+section::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--accent-neon);
+  border-left: 2px solid var(--accent-neon);
+}
+
+section::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--accent-neon);
+  border-right: 2px solid var(--accent-neon);
+}
+
+/* --- Hero Section --- */
+#hero {
+  border-left: 4px solid var(--accent-neon);
+  padding: 3.5rem 2.5rem;
+  background: linear-gradient(135deg, rgba(24, 32, 42, 0.9) 0%, rgba(18, 24, 32, 0.95) 100%);
+}
+
+#hero p {
+  font-size: 1.1rem;
+  margin: 1rem 0 2rem 0;
+  color: var(--text-main);
+}
+
+#hero a {
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  background: var(--accent-neon);
+  color: var(--bg-dark);
+  padding: 0.85rem 2.2rem;
+  clip-path: var(--clip-btn);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+#hero a:hover {
+  background: #ffffff;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+/* --- Keunggulan --- */
+#keunggulan {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+#keunggulan h2 {
+  grid-column: 1 / -1;
+}
+
+#keunggulan article {
+  background: var(--bg-card);
+  border: var(--border-tech);
+  padding: 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+#keunggulan article:hover {
+  border-color: var(--accent-neon);
+  transform: translateY(-4px);
+  box-shadow: 0 5px 20px rgba(0, 240, 255, 0.15);
+}
+
+/* --- Table (Katalog) --- */
+.katalog-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.btn-estimasi {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+  border: 1px solid var(--accent-orange);
+  padding: 0.5rem 1.2rem;
+  background: rgba(255, 153, 0, 0.08);
+  clip-path: var(--clip-btn);
+}
+
+.btn-estimasi:hover {
+  background: var(--accent-orange);
+  color: var(--bg-dark);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  overflow-x: auto;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  table { display: table; }
+}
+
+thead th {
+  background: #10161f;
+  color: var(--accent-neon);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--accent-neon);
+}
+
+tbody tr {
+  background: var(--bg-card);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+  background: var(--bg-hover);
+}
+
+td {
+  padding: 0.9rem 1rem;
+  font-size: 0.9rem;
+}
+
+td:first-child {
+  font-family: var(--font-mono);
+  color: var(--accent-neon);
+  font-weight: bold;
+}
+
+.badge-available, .badge-full {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  clip-path: var(--clip-btn);
+}
+
+.badge-available {
+  background: rgba(0, 255, 136, 0.15);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green);
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
+}
+
+.badge-full {
+  background: rgba(255, 42, 95, 0.15);
+  color: var(--accent-red);
+  border: 1px solid var(--accent-red);
+  box-shadow: 0 0 8px rgba(255, 42, 95, 0.2);
+}
+
+/* --- Alur Pendaftaran --- */
+#alur ol {
+  list-style: none;
+  counter-reset: mecha-step;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+#alur li {
+  counter-increment: mecha-step;
+  background: var(--bg-card);
+  border: var(--border-tech);
+  padding: 1.2rem;
+  font-size: 0.9rem;
+}
+
+#alur li::before {
+  content: "0" counter(mecha-step);
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-neon);
+  margin-bottom: 0.4rem;
+}
+
+/* --- Media (Gambar & Video) --- */
+#media img, #media video {
+  max-width: 100%;
+  height: auto;
+  border: var(--border-tech);
+  margin-bottom: 1.5rem;
+  display: block;
+  background: #000;
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: var(--border-tech);
+}
+
+footer small {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+footer small::before {
+  content: 'SYSTEM STATUS: ONLINE // ';
+  color: var(--accent-green);
+}
+
+/* ==========================================================================
+   MODUL 5: FORM & RESULT PAGE (MECHA FORM STYLING)
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.page-intro {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+  color: var(--accent-orange);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.4rem;
+}
+
+.form-card,
+.summary-card {
+  background: var(--bg-panel);
+  border: var(--border-tech);
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+fieldset.form-group {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+}
+
+label,
+legend {
+  display: block;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Dibuat width 100% dan background gelap agar tidak menggunakan gaya default browser */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: var(--bg-card) !important;
+  border: var(--border-tech) !important;
+  color: var(--text-bright) !important;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  border-radius: 0;
+  transition: all 0.2s ease;
+}
+
+::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  border-color: var(--accent-neon) !important;
+  box-shadow: 0 0 12px var(--accent-glow) !important;
+  background: var(--bg-hover) !important;
+}
+
+select option {
+  background: var(--bg-panel);
+  color: var(--text-bright);
+}
+
+.choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 1.5rem;
+  color: var(--text-main);
+  cursor: pointer;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.choice input[type="radio"],
+.choice input[type="checkbox"] {
+  accent-color: var(--accent-neon);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.help {
+  display: block;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+.btn-primary,
+.btn-link {
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: var(--accent-neon);
+  color: var(--bg-dark);
+  padding: 0.85rem 2rem;
+  border: none;
+  clip-path: var(--clip-btn);
+  box-shadow: 0 0 15px var(--accent-glow);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.btn-primary:hover,
+.btn-link:hover {
+  background: #ffffff;
+  color: var(--bg-dark);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+.alert-success {
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid var(--accent-green);
+  border-left: 4px solid var(--accent-green);
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+}
+
+.alert-success h1 {
+  font-size: 1.5rem;
+  color: var(--accent-green);
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+  margin-bottom: 0.3rem;
+}
+
+.summary-list {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 0.8rem 1.5rem;
+  margin-bottom: 1.8rem;
+}
+
+.summary-list dt {
+  font-family: var(--font-mono);
+  color: var(--accent-neon);
+  font-weight: bold;
+}
+
+.summary-list dd {
+  color: var(--text-bright);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .summary-list {
+    grid-template-columns: 1fr;
+    gap: 0.3rem 0;
+  }
+}
