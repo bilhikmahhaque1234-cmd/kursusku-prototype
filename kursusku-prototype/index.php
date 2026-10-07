@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/helpers.php';
 
-$siteName = 'KursusKu Pisang Pride';
+$siteName = 'KursusKu Kubu Pisang City';
 $tagline = 'Belajar, daftar, dan kelola kursus dalam satu tempat.';
 $year = date('Y');
 
@@ -64,12 +64,10 @@ $courses = [
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= htmlspecialchars($siteName) ?></title>
   
-  <!-- Font Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   
-  <!-- File CSS Utama -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -80,7 +78,10 @@ $courses = [
       <a href="#keunggulan">Keunggulan</a> 
       <a href="#katalog">Katalog</a> 
       <a href="registration.php">Daftar Kursus</a> 
-      <a href="#alur">Cara Daftar</a> 
+      <a href="history.php">History</a> 
+      <a href="loop-lab.php">Loop Lab</a> 
+      <a href="test-matrix.php">Test Matrix</a>
+      <a href="fee-calculator.php">Estimasi Biaya</a> 
       <a href="#kontak">Kontak</a>
     </nav>
   </header>
