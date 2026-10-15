@@ -15,7 +15,7 @@ $siteName = 'KursusKu Kubu Pisang City';
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="container" style="padding: 2rem;">
-  <h1>Testing Strict Equality Operator (Soal 22)</h1>
+  <h1>Testing Strict Equality Operator </h1>
   <p>Hasil dari <code>var_dump($fee === 350000)</code>:</p>
   <pre><?php var_dump($result); ?></pre>
   <a href="index.php" class="btn-primary">Kembali ke Beranda</a>

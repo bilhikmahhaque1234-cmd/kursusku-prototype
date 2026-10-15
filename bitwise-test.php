@@ -19,7 +19,7 @@ $siteName = 'KursusKu Kubu Pisang City';
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="container" style="padding: 2rem;">
-  <h1>Testing Bitwise Operator (Soal 11)</h1>
+  <h1>Testing Bitwise Operator </h1>
   <p>Nilai permission: <code><?= $permission ?></code></p>
   <p>Hasil pengecekan <code>$canDelete</code>:</p>
   <pre><?php var_dump($canDelete); ?></pre>

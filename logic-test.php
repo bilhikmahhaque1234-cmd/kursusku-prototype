@@ -18,7 +18,7 @@ $siteName = 'KursusKu Kubu Pisang City';
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="container" style="padding: 2rem;">
-  <h1>Testing Logika Kuota (Soal 21)</h1>
+  <h1>Testing Logika Kuota </h1>
   <p>Kuota: <?= $quota ?>, Terdaftar: <?= $registered ?></p>
   <p>Hasil <code>var_dump($isFull)</code>:</p>
   <pre><?php var_dump($isFull); ?></pre>
