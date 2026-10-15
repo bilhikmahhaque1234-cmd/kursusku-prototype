@@ -41,11 +41,11 @@ $testCases = [
     ],
     [
         'no' => 5,
-        'skenario' => 'Guru, PHP Lanjutan, 3 paket',
+        'skenario' => 'Guru, PHP Lanjutan, 2 paket',
         'type' => 'guru',
-        'code' => 'PHP-02',
-        'packages' => 3,
-        'expected' => 765000
+        'code' => 'PHP',
+        'packages' => 2,
+        'expected' => 680000
     ],
 ];
 ?>
