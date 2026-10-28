@@ -1,24 +1,13 @@
-======================================================================================================================
-                                     MATRIKS PENGUJIAN SISTEM (TEST MATRIX)
-                                     SISTEM KURSUSKU KUBU PISANG CITY
-======================================================================================================================
+# AI Usage Log - KursusKu Pisang Pride (Halaman Pendaftaran)
 
-NO  | SKENARIO PENGUJIAN                   | INPUT PARAMETER                         | EXPECTED OUTPUT          | ACTUAL OUTPUT            | STATUS
-----+--------------------------------------+-----------------------------------------+--------------------------+--------------------------+--------
-1   | Pendaftaran Mahasiswa (Web Dasar)    | Type: Mahasiswa (20%), Kursus: WEB-01   | Rp 160.000               | Rp 160.000               | PASS
-    | 1 Paket Pembelajaran                 | Package: 1                              |                          |                          |
-----+--------------------------------------+-----------------------------------------+--------------------------+--------------------------+--------
-2   | Pendaftaran Guru (PHP Dasar)         | Type: Guru (15%), Kursus: PHP-01        | Rp 212.500               | Rp 212.500               | PASS
-    | 1 Paket Pembelajaran                 | Package: 1                              |                          |                          |
-----+--------------------------------------+-----------------------------------------+--------------------------+--------------------------+--------
-3   | Pendaftaran Umum (Laravel Fund.)     | Type: Umum (0%), Kursus: LAR-01         | Rp 350.000               | Rp 350.000               | PASS
-    | 1 Paket Pembelajaran                 | Package: 1                              |                          |                          |
-----+--------------------------------------+-----------------------------------------+--------------------------+--------------------------+--------
-4   | Pendaftaran Mahasiswa Multiple Paket | Type: Mahasiswa (20%), Kursus: WEB-01   | Rp 320.000               | Rp 320.000               | PASS
-    | 2 Paket Pembelajaran                 | Package: 2                              |                          |                          |
-----+--------------------------------------+-----------------------------------------+--------------------------+--------------------------+--------
-5   | Pengisian Form Minat Belajar Kosong  | Interests: []                           | Belum ada minat          | Belum ada minat          | PASS
-    |                                      |                                         | tambahan.                | tambahan.                |
-======================================================================================================================
-KETERANGAN: Semua skenario pengujian kalkulasi biaya, diskon, dan penanganan input kosong bernilai VALID (PASS).
-======================================================================================================================
+| Masalah/tujuan | Referensi dari AI | Keputusan pengembang | Hasil uji |
+| -------------- | ----------------- | -------------------- | --------- |
+| Data form hilang saat validasi gagal | Memahami bahwa nilai input perlu diisi ulang (`value="..."`) dari `$_POST` agar pengguna tidak mengetik ulang. | Menambahkan `htmlspecialchars($_POST['nama'] ?? '')` pada atribut value setiap input. | Setelah error validasi, isian nama dan email tetap terisi. |
+| Validasi email tidak akurat | Memahami fungsi `filter_var()` dengan `FILTER_VALIDATE_EMAIL` untuk memeriksa format email. | Mengganti pengecekan manual `strpos('@')` dengan `filter_var()`. | Email seperti `budi@` ditolak, `budi@mail.com` diterima. |
+| Form bisa dikirim dengan kolom kosong | Memahami perbedaan `empty()`, `isset()`, dan `trim()` untuk mendeteksi input kosong atau hanya spasi. | Menggunakan `trim()` sebelum `empty()` pada semua kolom wajib. | Input berisi spasi saja ditolak dengan pesan error. |
+| Risiko XSS pada data yang ditampilkan | Memahami bahwa input pengguna harus di-escape sebelum dicetak ke HTML. | Membungkus semua output dengan `htmlspecialchars()`. | Input `<script>alert(1)</script>` tampil sebagai teks biasa. |
+| Pilihan kursus tidak terkirim | Memahami bahwa atribut `name` pada `<select>` dan radio button harus sama dengan key yang dibaca di PHP. | Menyamakan `name="course"` di form dengan `$_POST['course']` di `process-registration.php`. | Kursus yang dipilih muncul di halaman ringkasan. |
+| Perhitungan total biaya salah | Memahami pemakaian array harga per kursus dan konversi tipe dengan `(int)`. | Membuat array `$prices` dan menghitung total dari kursus serta metode belajar. | Total biaya sesuai hitungan manual untuk tiga skenario uji. |
+| Format rupiah tidak rapi | Memahami fungsi `number_format()` dengan pemisah ribuan titik. | Menampilkan harga dengan `'Rp ' . number_format($total, 0, ',', '.')`. | Harga tampil sebagai "Rp 450.000". |
+| Redirect setelah submit | Memahami pola Post/Redirect/Get dengan `header('Location: ...')` dan `exit`. | Menambahkan redirect ke `summary.php` setelah data diproses. | Refresh halaman ringkasan tidak memicu kirim ulang form. |
+| Dokumentasi bukti pengujian | Memahami cara mengambil screenshot halaman penuh dengan DevTools (Capture full size screenshot). | Mengambil screenshot form, pesan error, dan ringkasan sebagai bukti. | Semua screenshot tersimpan sebagai PNG di folder evidence. |
