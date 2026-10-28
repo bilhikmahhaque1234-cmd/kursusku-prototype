@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Route Verification - KursusKu</title>
+<style>
+:root {
+    --utama: #f59e0b;
+    --utama-soft: #fef3c7;
+    --latar: #e0f2fe;
+    --biru: #0e7490;
+    --biru-tua: #164e63;
+    --teks: #0c2a3a;
+    --garis: #bae6fd;
+    --ok: #15803d;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    padding: 32px 20px 40px;
+    font-family: Arial, sans-serif;
+    background: var(--latar);
+    color: var(--teks);
+    border-top: 6px solid var(--biru-tua);
+}
+.wrap { width: min(1100px, 100%); margin: 0 auto; }
+.bar { height: 6px; background: var(--utama); border-radius: 999px; margin-bottom: 22px; }
+.pill { display: inline-block; background: var(--biru); color: #fff; font-weight: 800; font-size: 13px; padding: 8px 16px; border-radius: 999px; }
+h1 { color: var(--biru-tua); font-size: 2rem; margin: 14px 0 18px; }
+.grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; }
+.card { background: #fff; border: 2px solid var(--garis); border-top: 5px solid var(--utama); border-radius: 16px; padding: 22px 24px; }
+.card h2 { color: var(--biru-tua); margin: 0 0 14px; font-size: 1.3rem; }
+code { background: var(--utama-soft); padding: 1px 6px; border-radius: 6px; font-size: 12px; }
+.term {
+    background: var(--biru-tua);
+    color: #e0f2fe;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: Consolas, monospace;
+    font-size: 12.5px;
+    line-height: 1.8;
+    white-space: pre;
+    overflow-x: auto;
+    margin: 0;
+}
+.term .cmd { color: #fbbf24; }
+.term .hit { color: #fde68a; font-weight: bold; }
+.term .dim { color: #7dd3fc; }
+.check { list-style: none; padding: 0; margin: 0; }
+.check li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; padding: 9px 0; border-bottom: 1px dashed var(--garis); }
+.check li:last-child { border-bottom: none; }
+.tick { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--ok); color: #fff; font-size: 13px; font-weight: bold; text-align: center; line-height: 22px; }
+.flow { margin-top: 18px; font-size: 13px; background: var(--utama-soft); border-left: 5px solid var(--utama); padding: 12px 14px; border-radius: 8px; line-height: 1.6; }
+@media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="bar"></div>
+    <span class="pill">ROUTE CHECK</span>
+    <h1>Route Verification</h1>
+
+    <div class="grid">
+        <section class="card">
+            <h2>php artisan route:list</h2>
+<pre class="term"><span class="cmd">λ php artisan route:list</span>
+
+<span class="hit">GET|HEAD  /  ............................................ home › HomeController@index</span>
+GET|HEAD  storage/{path}  ........................... storage.local
+PUT       storage/{path}  ........................... storage.local.upload
+GET|HEAD  up  ....................................... Illuminate\Foundation › HealthCheck
+
+<span class="dim">Showing [4] routes</span></pre>
+        </section>
+
+        <section class="card">
+            <h2>Hasil pemeriksaan</h2>
+            <ul class="check">
+                <li><span class="tick">✓</span><span>Method <code>GET|HEAD</code> untuk URI <code>/</code></span></li>
+                <li><span class="tick">✓</span><span>Nama route <code>home</code></span></li>
+                <li><span class="tick">✓</span><span>Controller <code>HomeController</code></span></li>
+                <li><span class="tick">✓</span><span>Method <code>index()</code> dipanggil</span></li>
+            </ul>
+            <div class="flow">
+                Browser (GET /) → <code>routes/web.php</code> → <code>HomeController@index</code> → <code>home.blade.php</code> → HTML response.
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>
